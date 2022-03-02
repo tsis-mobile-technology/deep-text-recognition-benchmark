@@ -7,6 +7,11 @@ import cv2
 
 import numpy as np
 
+## lmdb dataset 생성
+## train dataset
+# python create_lmdb_dataset.py --inputPath /Users/gotaejong/ExternHard/97_Workspace/jupyter/Text_in_the_wild/data/ --gtFile /Users/gotaejong/ExternHard/97_Workspace/jupyter/Text_in_the_wild/data/gt_train.txt --outputPath /Users/gotaejong/ExternHard/97_Workspace/jupyter/Text_in_the_wild/data_lmdb/train
+## validation dataset
+# python create_lmdb_dataset.py --inputPath /Users/gotaejong/ExternHard/97_Workspace/jupyter/Text_in_the_wild/data/ --gtFile /Users/gotaejong/ExternHard/97_Workspace/jupyter/Text_in_the_wild/data/gt_validation.txt --outputPath /Users/gotaejong/ExternHard/97_Workspace/jupyter/Text_in_the_wild/data_lmdb/validation
 
 def checkImageIsValid(imageBin):
     if imageBin is None:

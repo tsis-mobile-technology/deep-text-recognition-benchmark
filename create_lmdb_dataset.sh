@@ -9,7 +9,7 @@ python create_lmdb_dataset.py \
 python create_lmdb_dataset.py \
 --inputPath /home/proidea/jupyter/aihub_study_data/korean_spelling_save_image/sentence/ \
 --gtFile /home/proidea/jupyter/aihub_study_data/korean_spelling_save_image/sentence/gt_validation.txt \
---outputPath /home/proidea/jupyter/aihub_study_data/data_lmdb/sentence/train
+--outputPath /home/proidea/jupyter/aihub_study_data/data_lmdb/sentence/validation
 
 #syllable
 python create_lmdb_dataset.py \
@@ -20,7 +20,7 @@ python create_lmdb_dataset.py \
 python create_lmdb_dataset.py \
 --inputPath /home/proidea/jupyter/aihub_study_data/korean_spelling_save_image/syllable/ \
 --gtFile /home/proidea/jupyter/aihub_study_data/korean_spelling_save_image/syllable/gt_validation.txt \
---outputPath /home/proidea/jupyter/aihub_study_data/data_lmdb/syllable/train
+--outputPath /home/proidea/jupyter/aihub_study_data/data_lmdb/syllable/validation
 
 #word
 python create_lmdb_dataset.py \
@@ -31,4 +31,4 @@ python create_lmdb_dataset.py \
 python create_lmdb_dataset.py \
 --inputPath /home/proidea/jupyter/aihub_study_data/korean_spelling_save_image/word/ \
 --gtFile /home/proidea/jupyter/aihub_study_data/korean_spelling_save_image/word/gt_validation.txt \
---outputPath /home/proidea/jupyter/aihub_study_data/data_lmdb/word/train
+--outputPath /home/proidea/jupyter/aihub_study_data/data_lmdb/word/validation

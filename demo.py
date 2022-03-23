@@ -2,6 +2,7 @@
 import string
 import argparse
 
+import cv2
 import torch
 import torch.backends.cudnn as cudnn
 import torch.utils.data
@@ -10,8 +11,8 @@ import torch.nn.functional as F
 from utils import CTCLabelConverter, AttnLabelConverter
 from dataset import RawDataset, AlignCollate
 from model import Model
-device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-
+# device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+device = torch.device('cpu')
 
 def demo(opt):
     """ model configuration """
@@ -31,8 +32,8 @@ def demo(opt):
 
     # load model
     print('loading pretrained model from %s' % opt.saved_model)
-    #model.load_state_dict(torch.load(opt.saved_model, map_location=device), strict=False)
-    model.load_state_dict(torch.load(opt.saved_model), strict=False)
+    model.load_state_dict(torch.load(opt.saved_model, map_location=device), strict=False)
+    # model.load_state_dict(torch.load(opt.saved_model), strict=False)
 
     # prepare data. two demo images from https://github.com/bgshih/crnn#run-demo
     AlignCollate_demo = AlignCollate(imgH=opt.imgH, imgW=opt.imgW, keep_ratio_with_pad=opt.PAD)
@@ -47,6 +48,7 @@ def demo(opt):
     model.eval()
     with torch.no_grad():
         for image_tensors, image_path_list in demo_loader:
+            print('image_path_list:', image_path_list)
             batch_size = image_tensors.size(0)
             image = image_tensors.to(device)
             # For max length prediction
@@ -55,7 +57,6 @@ def demo(opt):
 
             if 'CTC' in opt.Prediction:
                 preds = model(image, text_for_pred)
-
                 # Select max probabilty (greedy decoding) then decode index to character
                 preds_size = torch.IntTensor([preds.size(1)] * batch_size)
                 _, preds_index = preds.max(2)

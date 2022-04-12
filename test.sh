@@ -2,12 +2,18 @@
 . ~/easy-ocr/bin/activate
 CUDA_VISIBLE_DEVICES=0,1 python test.py \
 --eval_data data_lmdb_release/evaluation --benchmark_all_eval \
---Transformation TPS --FeatureExtraction ResNet --SequenceModeling BiLSTM --Prediction Attn  \
+--Transformation None --FeatureExtraction VGG --SequenceModeling BiLSTM --Prediction Attn  \
 --imgH 32 --imgW 100 --output_channel 256 \
---saved_model ./saved_models/TPS-ResNet-BiLSTM-Attn-Seed332/best_accuracy.pth \
+--saved_model ./saved_models/None-VGG-BiLSTM-Attn-Seed334/best_accuracy.pth \
 --batch_size 384 --batch_max_length 256 --data_filtering_off --workers 0 & > /dev/null 
 deactivate
 
+#CUDA_VISIBLE_DEVICES=0,1 python test.py \
+#--eval_data data_lmdb_release/evaluation --benchmark_all_eval \
+#--Transformation TPS --FeatureExtraction ResNet --SequenceModeling BiLSTM --Prediction Attn  \
+#--imgH 32 --imgW 100 --output_channel 256 \
+#--saved_model ./saved_models/TPS-ResNet-BiLSTM-Attn-Seed332/best_accuracy.pth \
+#--batch_size 384 --batch_max_length 256 --data_filtering_off --workers 0 & > /dev/null
 
 #--saved_model ./saved_models/TPS-ResNet-BiLSTM-CTC-Seed1111/best_accuracy.pth --batch_size 150 \
 #--saved_model ./models/best_accuracy.pth \
